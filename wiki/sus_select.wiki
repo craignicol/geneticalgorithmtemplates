@@ -46,15 +46,17 @@ of LCD. Therefore cannot guarantee all results are integer
 without rounding. We have to accept rounding in floating point
 anyway.
 
-`:------:---:--:--------------:----:-:--:`
+{{{
 
-`:-----`
-`-:---:`
-`--:---`
-`------`
-`-----:`
-`----:-`
-`:--:`
+:------:---:--:--------------:----:-:--:
+
+:-----
+-:---:
+--:---
+------
+-----:
+----:-
+:--:
 
 0
 1
@@ -71,9 +73,10 @@ else
   i = row.search(target_f);
 end
 return cum_f[i];
-
+}}}
 To construct rows:
 (And we can pre-scale the data to make a good fit)
+{{{
 n = 0;
 for(i = 0; i < floor(cum_f[c-1]); i++)
   if(n==c || cum_f[n+1] > i)
@@ -85,8 +88,9 @@ for(i = 0; i < floor(cum_f[c-1]); i++)
     row.end = n;
   end
 end
-
+}}}
 where
+{{{
 class row {
   public:
   int start, end;
@@ -96,4 +100,4 @@ class row {
   private:
   map<float, int> data;
 };
-
+}}}
