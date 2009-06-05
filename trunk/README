@@ -22,6 +22,10 @@ To see an example of a ga in action:
 
 make -f Makefile.MG happyfaces && ./happy_faces_opt
 
+(fitness is based on number of moves to complete puzzle, anything 25
+or higher is a completed puzzle, the higher the fitness, the faster
+the chromosome completed the puzzle)
+
 To see an example result from the ga (and to see the puzzle in action):
 
 make -f Makefile.MG happysolution && ./happy_faces_solution
