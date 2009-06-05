@@ -1,0 +1,58 @@
+GAtemplates CHANGELOG
+
+v0.9
+ * Added standards support to compile under G++ 4
+
+v0.8a
+ * Added mutation operator to chromosome
+
+v0.8
+ * Added binary search to SUS using three versions:
+	- recursive: very very slow
+	- non-recursive: slow dur to copying vector
+	- pointers non-recursive: slightly slower than linear search
+ * Added attempt at linear search using a hash table of map but solution
+	is much slower than binary or linear search.
+ * SM_USER1 causes X to crash on large populations 
+ * reorganised main.cpp testsuite into chromosome and population test
+        where population tests include timing information
+
+v0.7
+ * Fixed random number check rand_less that over-estimated random selection 
+        due to overflow
+ * Added mutation to run_once_rank children
+ * Have a fully implemented testhappyfaces code and solution checker
+
+v0.6b
+ * Added crossover function passing
+
+v0.6a
+
+ * Added GAhappyfaces test to show a more complex fitness function.
+ * Added placeholders for crossover_base and mutate_base to allow chromosome operations to be overwritten.
+ * Added SM_TOURNAMENT selection (pick 2 random chromosomes, return the fittest)
+
+-------------
+v0.7 bug fix:
+
+15-Apr-2004: Segfault occurs in sort() in population.run_once()
+             The sort algorithm does a < comparison on two chromosomes
+	     one of which is invalid and has null function pointers.
+	     This problem only occurs when optimisation is on during
+             compilation (-O3)
+	     Problem only manifests itself in main NOT happy_faces
+-----------: Could use Random Number Generator
+             from stl instead of rand()
+10-May-2004: Segfault in GAchromosome occuring because _crossfunc()
+             is set to a NULL pointer. This should not happen...
+	     It's a problem with the selection method... It only
+	     happens when I use SM_USER0 or SM_USER1 - the faster
+             SUS methods. Looks like I was indexing one past the
+	     _population[] array. Stupid me.
+			  
+
+-------------
+
+To run:
+ g++ -lstdc++ -O3 -o happy_faces_opt testhappyfaces.cpp GAhappyfaces.cpp
+ ./happy_faces_opt
