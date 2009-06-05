@@ -4,14 +4,14 @@
 = Introduction =
 == variables required ==
 
-* population size
-* mutation rate
-* number of populations
-* population crossover
-* selection method - stochastic sampling, rank, map, ...
-* crossover rate
-* chromosome type
-* generation type - replace current, add to current, ...
+  * population size
+  * mutation rate
+  * number of populations
+  * population crossover
+  * selection method - stochastic sampling, rank, map, ...
+  * crossover rate
+  * chromosome type
+  * generation type - replace current, add to current, ...
 
 == functions required ==
 
