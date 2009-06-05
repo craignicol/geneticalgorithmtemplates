@@ -22,3 +22,5 @@ selection and mutation methods, as there's still a couple missing. It
 should compile fine under windows using MinGW, as there's no platform
 specific stuff, I think (not sure where timing functions fall on that
 score).
+
+See the other pages on [chromosome], [population] and [sus_select] for technical notes
