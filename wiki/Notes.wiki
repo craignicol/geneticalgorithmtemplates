@@ -15,7 +15,7 @@ for a start, as it's a bit unwieldy with so many parameters. Don't you
 have a book that talks about some design pattern that uses a class for
 initialiser so you can do things like:
 
-population(popInit().popsize(100).mrate(0.2));
+`population(popInit().popsize(100).mrate(0.2));`
 
 The only other major update I can think of is to add the alternative
 selection and mutation methods, as there's still a couple missing. It
