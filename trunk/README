@@ -1,8 +1,8 @@
 /***************************************************************************
-                          chromosome_bitarray.cpp  -  description
+                          README  -  description
                              -------------------
-    begin                : Fri Sep 27 2002
-    copyright            : (C) 2002 by Craig Nicol
+    begin                : Fri Jun05 13:03:34 BST 2009
+    copyright            : (C) 2002-2009 by Craig Nicol
     email                : craig.nicol@gmail.com
  ***************************************************************************/
 
@@ -15,17 +15,24 @@
  *                                                                         *
  ***************************************************************************/
 
-/***************************************************************************
- *                                                                         *
- *   This set of templates is provided as source code only. If you have    *
- *    compilation queries then please use the e-mail address above, but    *
- *    support for this source is not guaranteed.                           *
- *                                                                         *
- ***************************************************************************/
+QUICK START : G++
+-------------------
 
-#include "chromosome_bitarray.h"
+To see an example of a ga in action:
 
-chromosome_bitarray::chromosome_bitarray(){
-}
-chromosome_bitarray::~chromosome_bitarray(){
-}
+make -f Makefile.MG happyfaces && ./happy_faces_opt
+
+To see an example result from the ga (and to see the puzzle in action):
+
+make -f Makefile.MG happysolution && ./happy_faces_solution
+
+To see a suite of ga examples:
+
+make -f Makefile.MG fast && ./gat7o
+
+and see the main.cpp file to see how to use it.
+
+Poor ducomentation is a known issue.
+
+Tested on Ubuntu / Gcc 4.x
+Untested on other platforms

@@ -10,7 +10,7 @@
 
 #include <vector>
 
-namespace mgtl { // Mad Goldfish Template Library
+namespace mgtl { // Mildly Generic Template Library
    
    // int binary_search(T target, vector<T> list [, start, end])
    // 
