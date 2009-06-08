@@ -105,7 +105,6 @@ int HappyFaces::make_move(unsigned int square)
 std::string HappyFaces::to_string(grid_t &grid)
 {
   std::string out;
-  // char faces[2] = {'-', 'O'}; // NOTE: No terminating null
   grid_t mask = 1;
 
   for(int i=0; i < 25; i++, mask <<= 1) {

@@ -66,15 +66,9 @@ namespace mgtl { // Mildly Generic Template Library
      unsigned long middle = ((unsigned long)(1 + last - first)>>1);
      unsigned int i = 0;
      while(first < last) {
-//       middle >>= 4;
-//       middle <<= 4; // make sure it's a multiple of 16
 
        // The mean should err on the larger side to guarantee
        // The next iteration shrinks the search
-       // Ignore first version as it can give overflow...
-       // middle = (T *)( ( ((unsigned long)first + (unsigned long)last) + 1) / 2);
-       // This one is still too slow...
-       // middle = first + ((unsigned long)(1 + last - first)>>1);
        if(target < first[middle]) {
 	  last -= middle+1;
        } else {

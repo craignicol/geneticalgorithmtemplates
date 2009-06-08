@@ -62,7 +62,6 @@ inline void print_time(const T text, const timeb& time, std::ostream& out = cout
   out << text << time.time << "." << setw(3) << setfill('0') << time.millitm << endl;
 }
 
-/****** This does not work. setw and setfill not found... */
 ostream& operator<<(ostream& stream, timeb& time)
 {
   stream << time.time << "." << setw(3) << setfill('0') << time.millitm;
@@ -90,17 +89,13 @@ void testpop(int nruns, double popmrate, double chrommrate, double crate, long p
 
   timeb now,then,change;
   ftime(&then);
-  //std::cout << "Time before: " << then.time << "." << setw(3) << setfill('0') << then.millitm << endl;
-  //print_time("Time before: ", then);
   cout << "Time before: " << then << endl;
   pop_test.run(nruns);
   ftime(&now);
-  //  std::cout << "Time after: " << now.time << "." << now.millitm << endl;
   print_time("Time after: ", now);
   if(difftimeb(&now,&then,&change) != 0) {
     std::cout << "Incompatable times." << endl;
   } else {
-    // std::cout << "Time diff: " << change.time << "." << change.millitm << endl;
     print_time("Time diff: ", change);
   }
   std::cout << "Range final: " << pop_test.min() << " - " << pop_test.max() << std::endl;
@@ -117,7 +112,6 @@ void test_chrom()
   mg_GA::random_mutate<bool, 32> rb3;
 
   mg_GA::chromosome<bool,32,2> testz(&fz,&apx,&rb3,0.1);
-  //  testz.set_fitfunc(&fz);
   std::cout << "Hello, " << testz.tostring() << " = " << testz.showchrom() << " = " << testz.f() << std::endl;
   std::cout << mg_GA::bool2double(testz.getchrom(),32,-5,7) << '\t' << mg_GA::dj1<bool, 32>()(testz.getchrom()) << std::endl;
 

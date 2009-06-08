@@ -2,8 +2,6 @@
 // search. Based on hash table ideas to bound the range
 // of elements in a binary search.
 
-// See sus_select.idea for discussion of the concept here
-
 #ifndef __GASUS_H__
 #define __GASUS_H__
 
@@ -42,7 +40,6 @@ namespace mg_GA {
 	 // Scale data
 	 // Construct rows
  	 _fitnesses.clear();
-	 // _fitnesses.reserve(2000);
 	 sus_row blank(0,0);
 	 
 	 int n = 0;
