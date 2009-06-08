@@ -191,8 +191,8 @@ int main(int argc, char *argv[])
      << ", popsize: " << popsize << ", pop_control: " << pop_control
      << ", verbose: " << verbose << endl;
    
-  // test_chrom();
-  // cout << "--------------------------------------" << endl;
+  test_chrom();
+  cout << "--------------------------------------" << endl;
   cout << "USER2 (random) test:" << endl;
   testpop<bool,36>(generations, popmrate, chrommrate, crossrate, popsize, pop_control, mg_GA::SM_USER2, 1, 0, verbose);
   cout << "USER0 test:" << endl;
