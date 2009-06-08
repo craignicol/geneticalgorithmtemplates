@@ -213,14 +213,12 @@ namespace mg_GA {
 
       // merge_chrom returns the array as its third argument as c++ cannot have an
       // array as a return type
-      //      void merge_chrom(_chrom_t first, _chrom_t second, _chrom_t result) {for(int i=0; i<_Csize; i++) result[i] = rand()%2?first[i]:second[i]; };
       void merge_chrom(_chrom_t first, _chrom_t second, _chrom_t result) { /* assert(_crossfunc!=NULL); */ (*_crossfunc)(first, second, result); /* assert(_crossfunc!=NULL); */ };
       chromosome(_chrom_t& chrom, fitness_base<_CTYPE,_Csize> * ff, crossover_base<_CTYPE,_Csize> * xf, mutate_base<_CTYPE,_Csize> * mf, double mrate = 0.01) : _mrate(mrate), _fitfunc(ff), _mutatefunc(mf), _crossfunc(xf) { /* assert(_crossfunc!=NULL); assert(_mutatefunc!=NULL); */ std::copy(chrom, chrom+_Csize, _chromosome); set_sep(); };
-      void mutate() { (*_mutatefunc)(_chromosome, _mrate); }; // for(int i=0; i<_Csize; i++) _chromosome[i] = ((rand() % INT_MAX)<(_mrate*INT_MAX))?(rand() % _Numvals):_chromosome[i]; assert(_crossfunc!=NULL);};
+      void mutate() { (*_mutatefunc)(_chromosome, _mrate); }; 
 
       public:
       chromosome(fitness_base<_CTYPE,_Csize>* ff, crossover_base<_CTYPE,_Csize> * xf, mutate_base<_CTYPE,_Csize> * mf, double mrate = 0.01) : _mrate(mrate), _fitfunc(ff), _mutatefunc(mf), _crossfunc(xf) { /* assert(_crossfunc!=NULL); assert(_mutatefunc!=NULL); */ init_chrom(); };
-      //      chromosome(double mrate = 0.01) : _mrate(mrate) {for(int i=0; i<_Csize; i++) _chromosome[i] = rand() % _Numvals; _fitfunc = new maxones<_CTYPE,_Csize>; set_sep(); };
       ~chromosome() {};
 			
       void set_fitfunc(fitness_base<_CTYPE,_Csize>* ff) {_fitfunc = ff; /* assert(_crossfunc!=NULL); */ } ;
@@ -233,7 +231,6 @@ namespace mg_GA {
       std::string showchrom() { std::strstream out; for(int i=0; i<_Csize; i++) { out << _chromosome[i] << sep; }; out << '\0'; /* assert(_crossfunc!=NULL); */ return out.str(); };
       _CTYPE* getchrom() { return _chromosome; };
 			
-      //			int f() {return _chromosome.count(); }; // Fitness function. I expect this to be overwritten
       double f() {return calcfitness(); } ;
     };
   /***********************************************************************
@@ -250,8 +247,9 @@ namespace mg_GA {
       static bool operator<=(chromosome<_CTYPE,_Csize,_Numvals> first, chromosome<_CTYPE,_Csize,_Numvals> second) { return first.f() <= second.f(); };
 
 
-  // TODO: Need to check that the caching here actually stops calcfitness() being
-  // called everytime...
+  /* The cached chromosome here prevents the calculation of the fitness
+   * function when we know the value hasn't changed.
+   */
   template <class _Ctype, int _Csize, int _Maxval=2>
   class chrom_cached_lazy : public chromosome<_Ctype, _Csize, _Maxval>
   {
@@ -266,19 +264,6 @@ namespace mg_GA {
     chrom_cached_lazy operator+(chrom_cached_lazy second) {/* assert(_crossfunc!=NULL); */ chrom_cached_lazy newc(this->_fitfunc, this->_crossfunc, this->_mutatefunc, this->_mrate); merge_chrom(this->_chromosome, second._chromosome, newc._chromosome); return newc; };
     chrom_cached_lazy operator~() {this->mutate(); _isvalid = false; return *this;}
   };
-
-  /*
-  template <typename _Ctype=bool, int _Csize=32, int _Maxval=2>
-  class chrom_findzeroes : public chromosome<_Ctype, _Csize, _Maxval> {
-  protected:
-    double calcfitness() {return count(this->_chromosome, _chromosome+_Csize, 0); };
-
-  public:
-    chrom_findzeroes(double mr = 0.01) {chromosome<_Ctype, _Csize, _Maxval>(); _mrate = mr;};
-    chrom_findzeroes operator+(chrom_findzeroes second) { return chrom_findzeroes(chromosome<_Ctype,_Csize,_Maxval>(*this) + chromosome<_Ctype,_Csize,_Maxval>(second)); };
-  };
-  */
-
 
 };
 

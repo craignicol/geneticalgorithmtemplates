@@ -122,7 +122,6 @@ namespace mg_GA {
 	//initialise population here
 	for (int i = 0; i < _population_size; i++) {
 	  _population.push_back(chrom_t(fitfunc, crossfunc, mutfunc, _chrom_mutation_rate));
-	  //	  _population[i] = chrom_t(fitfunc, _chrom_mutation_rate);
 	}
       };
 	 				
@@ -168,11 +167,6 @@ namespace mg_GA {
     std::string showfitness() {
       std::strstream out;
 	   
-      /*
-      for (int i = 0; i < _population_size; i++) {
-	out << _population[i].f() << ' ';
-      }
-      */
       for (typename pop_t::iterator it = _population.begin(); it != _population.end(); ++it) {
 	out << it->f() << ' ';
       }
@@ -241,10 +235,6 @@ namespace mg_GA {
 	sort(SORT_ASCENDING);
       copy(add_pop.begin(), add_pop.end(), _population.begin());
 
-      /* Slower version of copy??? ***
-      _population.erase(_population.begin(), _population.begin() + add_pop.size());
-      _population.insert(_population.begin(), add_pop.begin(), add_pop.end());
-      */
     };
 	 			
     void run_once_replace() { // one generation = psize crossovers
@@ -265,10 +255,6 @@ namespace mg_GA {
 
       copy(newpop.begin(),newpop.end(),_population.begin());
 
-      /* Slower version of copy ??? ***
-      _population.clear();
-      _population.insert(_population.begin(),newpop.begin(),newpop.end());
-      */
     };
 
     struct add_fitness : public std::binary_function<double, chrom_t, double> {
@@ -460,8 +446,6 @@ namespace mg_GA {
       template<class _Ctype, int _Csize>
       void initialise(fitness_base<_Ctype,_Csize> * fitfunc, crossover_base<_Ctype,_Csize> * crossfunc)
       {
-	//	chrom_t * next = _population_array;
-	//_population = malloc(sizeof(chrom_t)*PSIZE);
 	this->_population_array = new chrom_t(fitfunc, crossfunc, this->_chrom_mutation_rate);
       };
   };
