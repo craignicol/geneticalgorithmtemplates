@@ -8,11 +8,10 @@ FLAGS = $(INCLUDESTL) -Wall -Wno-deprecated -lstdc++ $(FUTURE)
 FAST = -O3 -DNDEBUG
 GCC = g++ $(FLAGS)
 
-archive:
-	zip $(ARCHIVE_NAME) GA*.h MGalgo.h *.idea AUTHORS CHANGELOG COPYING *.cpp Makefile.MG
+all: testsuite happyfaces happysolution archive
 
-save-archive: archive
-	su -c 'cp $(ARCHIVE_NAME) ~quake/dos_shared'
+archive:
+	zip $(ARCHIVE_NAME) GA*.h MGalgo.h AUTHORS CHANGELOG COPYING *.cpp Makefile.MG
 
 happyfaces: *.h testhappyfaces.cpp GAhappyfaces.cpp
 	$(GCC) $(FAST) -o happy_faces_opt testhappyfaces.cpp GAhappyfaces.cpp 
@@ -21,7 +20,7 @@ happysolution: *.h happyfacessolution.cpp GAhappyfaces.cpp
 	$(GCC) $(FAST) -o happy_faces_solution happyfacessolution.cpp GAhappyfaces.cpp 
 
 testsuite: *.h main.cpp
-	$(GCC) -o gat7 main.cpp
+	($(GCC) -o gat7 main.cpp) && (./gat7 -1)
 
 debug: *.h main.cpp
 	$(GCC) -gstabs+ -o gat7d main.cpp
