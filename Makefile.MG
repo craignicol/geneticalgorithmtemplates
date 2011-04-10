@@ -22,6 +22,9 @@ happysolution: *.h happyfacessolution.cpp GAhappyfaces.cpp
 testsuite: *.h main.cpp
 	($(GCC) -o gat7 main.cpp) && (./gat7 -1)
 
+testMGalgo: *.h testMGalgo.cpp
+	($(GCC) -o testMGalgo testMGalgo.cpp) && (./testMGalgo)
+
 debug: *.h main.cpp
 	$(GCC) -gstabs+ -o gat7d main.cpp
 

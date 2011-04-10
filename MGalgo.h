@@ -23,10 +23,10 @@ namespace mgtl { // Mildly Generic Template Library
    // Outputs:
    //   index of the largest value in list no greater than target
    //   i.e. list[result] <= target < list[result+1]
-   //   except where target < list[start] when result = start-1
+   //   except where target < list[start] when result = start
    template <typename T>
      int binary_search_recurse(T target, std::vector<T> li, int start, int end) {
-	if(target < li[start]) return start-1;
+	if(target < li[start]) return start;
 	if(start==end) return start;
 	int middle = (start + end + 1)/2; // Add one to take the ceiling of the mean
 	if(target < li[middle]) {
