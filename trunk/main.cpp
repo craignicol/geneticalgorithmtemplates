@@ -116,7 +116,7 @@ void test_chrom()
   std::cout << mg_GA::bool2double(testz.getchrom(),32,-5,7) << '\t' << mg_GA::dj1<bool, 32>()(testz.getchrom()) << std::endl;
 
   for (int idx = 0; idx < 64; ++idx) {
-    bool data[6] = {idx & 32, idx & 16, idx & 8, idx & 4, idx & 2, idx & 1};
+    bool data[6] = {(bool)(idx & 32), (bool)(idx & 16), (bool)(idx & 8), (bool)(idx & 4), (bool)(idx & 2), (bool)(idx & 1)};
     bool ans[6];
     mg_GA::twopointx<bool,6>()(data,data,ans);
     std::cout << idx << ": " << data[0] << data[1] << data[2] << data[3] << data[4] << data[5] 
