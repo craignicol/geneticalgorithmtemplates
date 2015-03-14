@@ -1,0 +1,1 @@
+A Genetic Algorithm library inspired by Edinburgh University's pga program (using some of the same example, but without looking at their code). Written using C++ templates so that it can be extended.
