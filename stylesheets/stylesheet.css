@@ -243,7 +243,7 @@ a {
 
 .ellipse {
     position: absolute;
-    background: radial-gradient(ellipse, transparent, transparent 7px, black 7px, black 10px, transparent 11px);
+    background: radial-gradient(ellipse, transparent, transparent 7px, red 7px, red 10px, transparent 11px);
     background-size: 36px 40px;
     width: 200px;
     height: 20px;
