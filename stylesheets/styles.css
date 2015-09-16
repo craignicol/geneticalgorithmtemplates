@@ -856,7 +856,7 @@ section #title .credits.right {
   /* Clip edges, as some of the lines don't terminate nicely. */
     overflow: hidden;
     position: relative;
-    width: 200px;
+    /* width: 200px; */
     height: 50px;
 }
 
@@ -864,6 +864,7 @@ section #title .credits.right {
     position: absolute;
     width: 200px;
     height: 5px;
+    top: 1em;
 }
 
 .smallLine1 {
