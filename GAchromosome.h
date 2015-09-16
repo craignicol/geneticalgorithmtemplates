@@ -43,10 +43,7 @@ template<typename T> std::string is_true(std::string truestr, std::string falses
 
 template<typename T>
 std::string get_type() {
-  // std::strstream out;
-  // out << is_true<T>("int", "float", typename _Is_integer<T>::_Integral()) << sizeof(T)*8 << '\0';
   return typeid(T).name(); // Only returns one character
-  // return out.str();
 }
 
 namespace mg_GA {
@@ -63,7 +60,7 @@ namespace mg_GA {
   template<class _Ctype, int _Csize>
   struct maxones : public fitness_base<_Ctype,_Csize>{
     double operator()(_Ctype chrom[_Csize]) {
-      return count(chrom, chrom+_Csize, 1);    
+      return std::count(chrom, chrom+_Csize, 1);    
     };
   } ;
 
@@ -198,17 +195,14 @@ namespace mg_GA {
      ***********************************************************************/
 		
       private:
-      //      void set_sep() {if ((_Numvals >= 10) || (_Numvals <= 0)) sep = '-'; else sep = 24; /* Non-printing CAN signal */} ;
       void set_sep() {sep[1] = '\0'; if ((_Numvals < 10) && (_Numvals > 0)) sep[0] = '\0'; else sep[0] = '-'; /* assert(_crossfunc!=NULL); */ } ;
       
       protected:
       chromosome() {} ; // Disable default constructor
 
-      //      double calcfitness() {return count(_chromosome, _chromosome+_Csize, 1); };
       // Function below SEGFAULTs if result is returned directly when called
       // from chromosome < chromosome
       double calcfitness() { double result = (*_fitfunc)(_chromosome); return result; /* assert(_crossfunc!=NULL); */ };
-      // double calcfitness() { std::cout << "("; double result = (*_fitfunc)(_chromosome); std::cout << ")"; return result; };
       void init_chrom() {for(int i=0; i<_Csize; i++) _chromosome[i] = rand() % _Numvals; /* assert(_crossfunc!=NULL); */ set_sep();};
 
       // merge_chrom returns the array as its third argument as c++ cannot have an
@@ -261,7 +255,7 @@ namespace mg_GA {
     chrom_cached_lazy(fitness_base<_Ctype,_Csize>* ff, crossover_base<_Ctype,_Csize> * xf, mutate_base<_Ctype,_Csize> * mf, double mr = 0.01) : _isvalid(false) {this->_mrate = mr; this->_fitfunc = ff; this->_crossfunc = xf; this->_mutatefunc = mf; /* assert(_crossfunc!=NULL); assert(_mutatefunc!=NULL); */ this->init_chrom(); };
 
     double f() {if (!_isvalid) {_fitness = this->calcfitness(); _isvalid = true;} return _fitness; };
-    chrom_cached_lazy operator+(chrom_cached_lazy second) {/* assert(_crossfunc!=NULL); */ chrom_cached_lazy newc(this->_fitfunc, this->_crossfunc, this->_mutatefunc, this->_mrate); merge_chrom(this->_chromosome, second._chromosome, newc._chromosome); return newc; };
+    chrom_cached_lazy operator+(chrom_cached_lazy second) {/* assert(_crossfunc!=NULL); */ chrom_cached_lazy newc(this->_fitfunc, this->_crossfunc, this->_mutatefunc, this->_mrate); this->merge_chrom(this->_chromosome, second._chromosome, newc._chromosome); return newc; };
     chrom_cached_lazy operator~() {this->mutate(); _isvalid = false; return *this;}
   };
 
