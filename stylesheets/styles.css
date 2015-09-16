@@ -849,3 +849,27 @@ section #title .credits.right {
     display: none;
   }
 }
+
+/* Squiggly underline */
+/* As found in http://stackoverflow.com/questions/17285514/is-it-possible-to-make-a-squiggly-line */
+.holder {
+  /* Clip edges, as some of the lines don't terminate nicely. */
+    overflow: hidden;
+    position: relative;
+    width: 200px;
+    height: 50px;
+}
+
+.ellipse {
+    position: absolute;
+    background: radial-gradient(ellipse, transparent, transparent 7px, red 7px, red 10px, transparent 11px);
+    background-size: 36px 40px;
+    width: 200px;
+    height: 20px;
+}
+
+.ellipse2 {
+    top: 20px;
+    left: 18px;
+    background-position: 0px -20px;
+}
