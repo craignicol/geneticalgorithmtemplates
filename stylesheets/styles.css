@@ -863,9 +863,10 @@ section #title .credits.right {
 
 .smallLine {
     position: absolute;
-    width: 200px;
+    width: 100%;
     height: 5px;
-    top: 1em;
+    top: 1.1em;
+    left: 0em;
 }
 
 .smallLine1 {
